@@ -1,0 +1,57 @@
+{
+  "AutomaticReconnect": false,
+  "SerialPortName": "COM12",
+  "StartupDelayMs": 500,
+  "IsConnecting": false,
+  "IsEnabled": false,
+  "LogIncomingData": true,
+  "IsConnected": false,
+  "BaudRate": 115200,
+  "DtrEnable": true,
+  "RtsEnable": true,
+  "EditorExpanded": true,
+  "Name": "Custom Serial device",
+  "Description": "Serial device",
+  "LastErrorDate": "2025-05-01T16:35:25.5280813+02:00",
+  "LastErrorMessage": null,
+  "IsFreezed": false,
+  "SettingsBuilder": {
+    "Settings": [
+      {
+        "Maximum": 255,
+        "Minimum": 0,
+        "PropertyName": "motor_speed",
+        "CurrentValue": 109,
+        "Name": null,
+        "TypeName": "SliderEntry",
+        "Label": "Motor Speed",
+        "Id": "004a0299-3d59-4e39-9076-e7b491a3bcb9"
+      }
+    ],
+    "IsEditMode": false
+  },
+  "OnConnectMessage": {
+    "Expression": ""
+  },
+  "OnDisconnectMessage": {
+    "Expression": ""
+  },
+  "UpdateMessages": [
+    {
+      "Message": {
+        "JSExt": 0,
+        "Interpreter": 1,
+        "Expression": "if($prop('InputStatus.KeyboardReaderPlugin.Space')){\r\n\treturn \"A1\";\r\n}else{\r\n\treturn \"A0\";\r\n}"
+      },
+      "IsEnabled": true,
+      "MaximumFrequency": 60
+    },
+    {
+      "Message": {
+        "Expression": "'S' + [Settings.motor_speed]"
+      },
+      "IsEnabled": true,
+      "MaximumFrequency": 0
+    }
+  ]
+}
