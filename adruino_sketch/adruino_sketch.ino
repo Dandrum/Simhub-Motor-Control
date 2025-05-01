@@ -7,6 +7,8 @@ Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
 
 String completeMessage = "";
 
+bool reverse = false;
+
 void setup() {
   Serial.begin(115200);
 
@@ -19,28 +21,32 @@ void loop() {
   int checkByte = (int)incomingByte;
 
   if (checkByte == -1) {
-    if(completeMessage != ""){
-    String command = completeMessage.substring(0,1);
-    int value = completeMessage.substring(1).toInt();
+    if (completeMessage != "") {
+      String command = completeMessage.substring(0, 1);
+      int value = completeMessage.substring(1).toInt();
 
-    if(command == "S"){
-       myMotor->setSpeed(value);
+      if (command == "S") {
+        myMotor->setSpeed(value);
 
-       Serial.print("Set speed to: ");
-       Serial.println(value);
-    }else if(command == "A"){
-        if(value == 1){
+        Serial.print("Set speed to: ");
+        Serial.println(value);
+      } else if (command == "A") {
+        if (value == 1) {
           myMotor->run(FORWARD);
-        }else{
-          myMotor->run(BACKWARD);
-          delay(500); // A bit Reverse for not Dripping.
+          reverse = true;
+        } else {
+          if (reverse) {
+            myMotor->run(BACKWARD);
+            delay(500);
+            reverse = false;
+          }
           myMotor->run(RELEASE);
         }
-    }else{
+      } else {
         myMotor->run(RELEASE);
-    }
+      }
 
-    completeMessage = "";
+      completeMessage = "";
     }
   } else {
     if (checkByte != -1) {
