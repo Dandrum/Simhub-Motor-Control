@@ -32,6 +32,8 @@ void loop() {
         if(value == 1){
           myMotor->run(FORWARD);
         }else{
+          myMotor->run(BACKWARD);
+          delay(500); // A bit Reverse for not Dripping.
           myMotor->run(RELEASE);
         }
     }else{
