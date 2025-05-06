@@ -1,6 +1,6 @@
 {
-  "AutomaticReconnect": false,
-  "SerialPortName": "COM12",
+  "AutomaticReconnect": true,
+  "SerialPortName": "COM15",
   "StartupDelayMs": 500,
   "IsConnecting": false,
   "IsEnabled": false,
@@ -12,7 +12,7 @@
   "EditorExpanded": true,
   "Name": "Custom Serial device",
   "Description": "Serial device",
-  "LastErrorDate": "2025-05-01T16:35:25.5280813+02:00",
+  "LastErrorDate": "2025-05-02T21:19:30.0124042+02:00",
   "LastErrorMessage": null,
   "IsFreezed": false,
   "SettingsBuilder": {
@@ -21,11 +21,19 @@
         "Maximum": 255,
         "Minimum": 0,
         "PropertyName": "motor_speed",
-        "CurrentValue": 109,
+        "CurrentValue": 220,
         "Name": null,
         "TypeName": "SliderEntry",
         "Label": "Motor Speed",
         "Id": "004a0299-3d59-4e39-9076-e7b491a3bcb9"
+      },
+      {
+        "PropertyName": "reverse_mode",
+        "CurrentValue": true,
+        "Name": null,
+        "TypeName": "BoolEntry",
+        "Label": "Reverse",
+        "Id": "3e8ab3b9-deed-456f-9c49-10ebfaf4d82c"
       }
     ],
     "IsEditMode": false
@@ -41,7 +49,7 @@
       "Message": {
         "JSExt": 0,
         "Interpreter": 1,
-        "Expression": "if($prop('InputStatus.KeyboardReaderPlugin.Space')){\r\n\treturn \"A1\";\r\n}else{\r\n\treturn \"A0\";\r\n}"
+        "Expression": "if($prop('InputStatus.KeyboardReaderPlugin.D0')){\r\n\tif($prop('Settings.reverse_mode')){\r\n\t\treturn \"A2\";\r\n\t}\r\n\treturn \"A1\";\r\n}else{\r\n\treturn \"A0\";\r\n}\r\n\r\n\r\n"
       },
       "IsEnabled": true,
       "MaximumFrequency": 60

@@ -14,6 +14,8 @@ void setup() {
 
   AFMS.begin();
   myMotor->setSpeed(150);
+
+  Serial.println("READY FOR DRINKING");
 }
 
 void loop() {
@@ -34,10 +36,12 @@ void loop() {
         if (value == 1) {
           myMotor->run(FORWARD);
           reverse = true;
+        } else if (value == 2) {
+          myMotor->run(BACKWARD);
         } else {
           if (reverse) {
             myMotor->run(BACKWARD);
-            delay(500);
+            delay(1000);
             reverse = false;
           }
           myMotor->run(RELEASE);
